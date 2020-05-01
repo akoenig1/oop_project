@@ -88,7 +88,6 @@ class GameBoard
                                 [self.board[2][0], self.board[1][1], self.board[0][2]], ]
         
         winning_conditions.each do |condition|
-            puts "condition: + #{condition}" 
             if condition.all? { |cell| cell == "X" }
                 puts "Three in a row! Player X wins!"
                 winner = true
@@ -117,4 +116,8 @@ loop do
         end
     end
     i += 1
+    if i >= 9
+        puts "It's a draw."
+        break
+    end
 end
