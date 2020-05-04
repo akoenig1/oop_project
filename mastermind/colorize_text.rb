@@ -46,6 +46,10 @@ class String
     def black_text
         colorize_text(30)
     end
+
+    def white_text
+        colorize_text(15)
+    end
 end
 
 def print_with_color row

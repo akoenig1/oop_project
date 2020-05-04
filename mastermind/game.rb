@@ -15,10 +15,6 @@ def generate_code
     row
 end
 
-# Call for new code for this game
-
-code = Row.new(generate_code)
-
 # Method to get and validate player guess
 
 def get_player_guess
@@ -64,81 +60,96 @@ def give_player_feedback guess, code
 end
 
 # Gameplay logic
+selection = 0
+while selection != 3
+    puts ("-"*60)
+    puts "WELCOME TO MASTERMIND!".center(60)
+    puts ("-"*60)
+    puts "Select an option below:"
+    puts "[1] START GAME"
+    puts "[2] HOW TO PLAY"
+    puts "[3] EXIT"
+    puts ""
 
-puts "Welcome to Mastermind. Select an option below."
-puts "[1] Start Game"
-puts "[2] How to Play"
-puts "[3] Exit"
-puts ""
+    valid_input = false
+    while !valid_input
+        print "Choice: "
+        selection = gets.chomp
+        if selection == "1"
+            valid_input = true
+        elsif selection == "2"
+            puts "HOW TO PLAY:
+            
+    Mastermind is a game of cunning and wit. The objective is simple - 
+    the computer has a code and you have to break it. 
 
-valid_input = false
-while !valid_input
-    selection = gets.chomp
-    if selection == "1"
-        valid_input = true
-    elsif selection == "2"
-        puts "Mastermind is a game of cunning and wit. The objective is simple - 
-the computer has a code and you have to break it. 
+    The code consists of 4 colors in a specific order. Your goal is to guess the 
+    colors in their exact order. The colors can be any one of 8 colors available
+    for the computer to choose from which are as follows:
+        - Red
+        - Green
+        - Blue
+        - Yellow
+        - Orange
+        - Purple
+        - Magenta
+        - White
+    The computer is allowed to repeat colors in the code, so theoretically the code
+    could just be four of the same color. You will have to figure it out for yourself.
 
-The code consists of 4 colors in a specific order. Your goal is to guess the 
-colors in their exact order. The colors can be any one of 8 colors available
-for the computer to choose from which are as follows:
-    - Red
-    - Green
-    - Blue
-    - Yellow
-    - Orange
-    - Purple
-    - Magenta
-    - White
-The computer is allowed to repeat colors in the code, so theoretically the code
-could just be four of the same color. You will have to figure it out for yourself.
+    To submit a guess, simply type in the first letter of each color, in the order you
+    believe they're arranged in the code, in the format 'RGBY', then hit Enter.
 
-To submit a guess, simply type in the first letter of each color, in the order you
-believe they're arranged in the code, in the format 'RGBY', then hit Enter.
+    After each guess, the computer will give you feedback about how accurate your guess
+    was. For each correct color, the computer will print a '*'. However if you guess the
+    correct color in the correct position, the computer will print a '!'. The computer 
+    will not print anything for incorrect colors. 
 
-After each guess, the computer will give you feedback about how accurate your guess
-was. For each correct color, the computer will print a '*'. However if you guess the
-correct color in the correct position, the computer will print a '!'. The computer 
-will not print anything for incorrect colors. 
+    As an example, if the code were 'RGBY' and you guessed 'RBWW', the computer would 
+    print a '!' for correctly guessing Red in the first position, and a '*' for correctly
+    guessing that there is a Blue in the code, but not getting the position right. You
+    can then use that feedback to influence your next guess.
 
-As an example, if the code were 'RGBY' and you guessed 'RBWW', the computer would 
-print a '!' for correctly guessing Red in the first position, and a '*' for correctly
-guessing that there is a Blue in the code, but not getting the position right. You
-can then use that feedback to influence your next guess.
+    You will be given 12 guesses to crack the code. If you match the code exactly on any
+    one of those guesses, you win! But if you fail to get it after 12 guesses, you lose :(
+        
+    Good Luck!"
 
-You will be given 12 guesses to crack the code. If you match the code exactly on any
-one of those guesses, you win! But if you fail to get it after 12 guesses, you lose :(
-    
-Good Luck!"
+            puts "Welcome to Mastermind. Select an option below."
+            puts "[1] Start Game"
+            puts "[2] How to Play"
+            puts "[3] Exit"
+            puts ""
+        elsif selection == "3"
+            puts "Thanks for playing. See you next time."
+            return
+        else
+            puts "Invalid input. Please enter 1, 2, or 3."
+        end
+    end
 
-        puts "Welcome to Mastermind. Select an option below."
-        puts "[1] Start Game"
-        puts "[2] How to Play"
-        puts "[3] Exit"
-        puts ""
-    elsif selection == "3"
-        puts "Thanks for playing. See you next time."
-        return
-    else
-        puts "Invalid input. Please enter 1, 2, or 3."
+    puts "-"*60
+    puts "CODEMAKER".center(60)
+    puts "-"*60
+    puts ""
+    code = Row.new(generate_code)
+    i = 0
+    while i < 12
+        puts "GUESS ##{i+1} OF 12"
+        guess = Row.new(get_player_guess)
+        puts "Your Guess: "
+        print_with_color(guess)
+        puts "Feedback: "
+        if give_player_feedback guess, code
+            break
+        end
+        i += 1
+    end
+    if i == 11
+        puts "GAME OVER"
+        puts "You ran out of guesses and failed to crack the code."
+        print "The code was: "
+        print_with_color(code)
+        puts "Better luck next time."
     end
 end
-
-i = 0
-while i < 12
-    puts "GUESS ##{i+1} OF 12"
-    guess = Row.new(get_player_guess)
-    puts "Your Guess: "
-    print_with_color(guess)
-    puts "Feedback: "
-    if give_player_feedback guess, code
-        return
-    end
-    i += 1
-end
-puts "GAME OVER"
-puts "You ran out of guesses and failed to crack the code."
-print "The code was: " 
-print_with_color(code)
-puts "Better luck next time."
