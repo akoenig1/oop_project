@@ -6,11 +6,11 @@ class Row
         @peg_array = peg_array
     end
 
-    def print_row
+    def return_row
         row = @peg_array.map do |peg| 
             peg.color
         end.join("")
-        puts row
+        row
     end
 
 end
