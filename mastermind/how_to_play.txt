@@ -1,0 +1,41 @@
+
+HOW TO PLAY:
+            
+    Mastermind is a game of cunning and wit. The objective is simple - 
+    the computer has a code and you have to break it. 
+
+    The code consists of 4 colors in a specific order. Your goal is to guess the 
+    colors in their exact order. The colors can be any one of 8 colors available
+    for the computer to choose from which are as follows:
+        - Red
+        - Green
+        - Blue
+        - Yellow
+        - Orange
+        - Purple
+        - Magenta
+        - White
+    The computer is allowed to repeat colors in the code, so theoretically the 
+    code could just be four of the same color. You will have to figure it out 
+    for yourself.
+
+    To submit a guess, simply type in the first letter of each color, in the 
+    order you believe they're arranged in the code, in the format 'RGBY', then 
+    hit Enter.
+
+    After each guess, the computer will give you feedback about how accurate 
+    your guess was. For each correct color, the computer will print a '*'. 
+    However if you guess the correct color in the correct position, the computer
+    will print a '!'. The computer will not print anything for incorrect colors. 
+
+    As an example, if the code were 'RGBY' and you guessed 'RBWW', the computer 
+    would print a '!' for correctly guessing Red in the first position, and a 
+    '*' for correctly guessing that there is a Blue in the code, but not getting 
+    the position right. You can then use that feedback to influence your next 
+    guess.
+
+    You will be given 12 guesses to crack the code. If you match the code 
+    exactly on any one of those guesses, you win! But if you fail to get it 
+    after 12 guesses, you lose :(
+        
+    Good Luck!

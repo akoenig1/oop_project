@@ -62,9 +62,9 @@ end
 # Gameplay logic
 selection = 0
 while selection != 3
-    puts ("-"*60)
-    puts "WELCOME TO MASTERMIND!".center(60)
-    puts ("-"*60)
+    puts ("-"*80)
+    puts "WELCOME TO MASTERMIND!".center(80)
+    puts ("-"*80)
     puts "Select an option below:"
     puts "[1] START GAME"
     puts "[2] HOW TO PLAY"
@@ -78,43 +78,9 @@ while selection != 3
         if selection == "1"
             valid_input = true
         elsif selection == "2"
-            puts "HOW TO PLAY:
-            
-    Mastermind is a game of cunning and wit. The objective is simple - 
-    the computer has a code and you have to break it. 
-
-    The code consists of 4 colors in a specific order. Your goal is to guess the 
-    colors in their exact order. The colors can be any one of 8 colors available
-    for the computer to choose from which are as follows:
-        - Red
-        - Green
-        - Blue
-        - Yellow
-        - Orange
-        - Purple
-        - Magenta
-        - White
-    The computer is allowed to repeat colors in the code, so theoretically the code
-    could just be four of the same color. You will have to figure it out for yourself.
-
-    To submit a guess, simply type in the first letter of each color, in the order you
-    believe they're arranged in the code, in the format 'RGBY', then hit Enter.
-
-    After each guess, the computer will give you feedback about how accurate your guess
-    was. For each correct color, the computer will print a '*'. However if you guess the
-    correct color in the correct position, the computer will print a '!'. The computer 
-    will not print anything for incorrect colors. 
-
-    As an example, if the code were 'RGBY' and you guessed 'RBWW', the computer would 
-    print a '!' for correctly guessing Red in the first position, and a '*' for correctly
-    guessing that there is a Blue in the code, but not getting the position right. You
-    can then use that feedback to influence your next guess.
-
-    You will be given 12 guesses to crack the code. If you match the code exactly on any
-    one of those guesses, you win! But if you fail to get it after 12 guesses, you lose :(
-        
-    Good Luck!"
-
+            how_to_text = open("how_to_play.txt")
+            puts how_to_text.read.center(80)
+            puts ""
             puts "Welcome to Mastermind. Select an option below."
             puts "[1] Start Game"
             puts "[2] How to Play"
@@ -128,9 +94,9 @@ while selection != 3
         end
     end
 
-    puts "-"*60
-    puts "CODEMAKER".center(60)
-    puts "-"*60
+    puts "-"*80
+    puts "CODEMAKER".center(80)
+    puts "-"*80
     puts ""
     code = Row.new(generate_code)
     i = 0
