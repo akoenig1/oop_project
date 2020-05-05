@@ -1,6 +1,6 @@
 require_relative 'row'
 require_relative 'colorize_text'
-require_relative 'codemaker'
+require_relative 'codebreaker'
 
 #Menu logic
 puts ("-"*80)
@@ -16,9 +16,9 @@ loop do
     puts ""
     print "Choice: "
     selection = gets.chomp
-    #Codemaker Game Mode
+    #Codebreaker Game Mode
     if selection == "1"
-        codemaker
+        codebreaker
     #Print How to Play
     elsif selection == "2"
         how_to_text = open("how_to_play.txt")
