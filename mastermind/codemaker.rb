@@ -34,20 +34,33 @@ end
 
 #Give computer feedback to user's most recent guess
 def give_player_feedback guess, code
+    #Retrieve peg colors from row objects and store in arrays
     guess_array = guess.return_row.split("")
     code_array = code.return_row.split("")
+    #Initialize empty array to put feedback in
     feedback_array = []
+    
+    #Compare each user guess peg color to that of the computer's code
     for i in 0..3 do
+        #If correct color in correct position, add '!' to feedback array
+        #and remove that color from the code array so it is not counted again
         if guess_array[i] == code_array[i]
             feedback_array << "!"
             code_array[i] = ""
+        #If correct color but not in correct position, add '*' to feedback
+        #array and remove that color from the code array so it is not counted
+        #again
         elsif code_array[0..3].include?(guess_array[i])
             feedback_array << "*"
             code_array[code_array.index(guess_array[i])] = ""
         end
     end
+    
+    #Print stylized feedback array
     feedback_array.each { |fb| print fb.grey.black_text + " "}
     puts ""
+    
+    #Indicate if guess was fully correct or not
     if feedback_array == ["!","!","!","!"]
         puts "CONGRATULATIONS! You cracked the code!"
         true
