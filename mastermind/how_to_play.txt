@@ -2,11 +2,12 @@
 HOW TO PLAY:
             
     Mastermind is a game of cunning and wit. The objective is simple - 
-    the computer has a code and you have to break it. 
+    one player, the ~codemaker~, creates a secret code and the other, the
+    ~codebreaker~, has to break it. 
 
-    The code consists of 4 colors in a specific order. Your goal is to guess the 
-    colors in their exact order. The colors can be any one of 8 colors available
-    for the computer to choose from which are as follows:
+    The code consists of 4 colors in a specific order. The goal for the
+    ~codebreaker~ is to guess the colors in their exact order. The colors can be 
+    any one of the following 8 colors:
         - Red
         - Green
         - Blue
@@ -15,27 +16,46 @@ HOW TO PLAY:
         - Purple
         - Magenta
         - White
-    The computer is allowed to repeat colors in the code, so theoretically the 
-    code could just be four of the same color. You will have to figure it out 
-    for yourself.
+    The code is allowed to consist of repeated colors, so theoretically the 
+    code could just be four of the same color. It is up to the ~codebreaker~ to
+    figure that out for themselves.
 
-    To submit a guess, simply type in the first letter of each color, in the 
-    order you believe they're arranged in the code, in the format 'RGBY', then 
-    hit Enter.
+    There are two game modes available for you, the human player, to choose 
+    from. You can play a ~codebreaker~ game, where the computer comes up with
+    the secret code and it is your goal to crack it, or play as the ~codemaker~
+    and see if you can outsmart the computer.
 
-    After each guess, the computer will give you feedback about how accurate 
-    your guess was. For each correct color, the computer will print a '*'. 
-    However if you guess the correct color in the correct position, the computer
-    will print a '!'. The computer will not print anything for incorrect colors. 
+    CODEBREAKER MODE:
 
-    As an example, if the code were 'RGBY' and you guessed 'RBWW', the computer 
-    would print a '!' for correctly guessing Red in the first position, and a 
-    '*' for correctly guessing that there is a Blue in the code, but not getting 
-    the position right. You can then use that feedback to influence your next 
-    guess.
+        To submit a guess, simply type in the first letter of each color, in the 
+        order you believe they're arranged in the code, in the format 'RGBY',
+        then hit Enter.
 
-    You will be given 12 guesses to crack the code. If you match the code 
-    exactly on any one of those guesses, you win! But if you fail to get it 
-    after 12 guesses, you lose :(
+        After each guess, the computer will give you feedback about how accurate 
+        your guess was. For each correct color, the computer will print a '*'. 
+        However if you guess the correct color in the correct position, the 
+        computer will print a '!'. The computer will not print anything for 
+        incorrect colors. 
+
+        As an example, if the code were 'RGBY' and you guessed 'RBWW', the 
+        computer would print a '!' for correctly guessing Red in the first 
+        position, and a '*' for correctly guessing that there is a Blue in the
+        code, but not getting the position right. You can then use that feedback
+        to influence your next guess.
+
+        You will be given 12 guesses to crack the code. If you match the code 
+        exactly on any one of those guesses, you win! But if you fail to get it 
+        after 12 guesses, you lose :(
+
+    CODEMAKER MODE:
+
+        The game starts with you creating the code. When you've come up with 
+        your code, submit it just like you would submit a guess in codebreaker
+        mode: type four colors in the format 'RGBY', then hit Enter.
+
+        The computer will then rattle off guesses and utilize the guess feedback
+        just like you to determine the code. If the computer fails to guess the 
+        code correctly within 12 guesses, you win! But if they crack it, you
+        lose :(
         
     Good Luck!
