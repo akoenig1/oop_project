@@ -97,39 +97,28 @@ def codemaker
 end
 
 #Menu logic
-selection = 0
-while selection != 3
-    puts ("-"*80)
-    puts "WELCOME TO MASTERMIND!".center(80)
-    puts ("-"*80)
-    puts "Select an option below:"
-    puts "[1] START GAME"
-    puts "[2] HOW TO PLAY"
-    puts "[3] EXIT"
+puts ("-"*80)
+puts "WELCOME TO MASTERMIND!".center(80)
+puts ("-"*80)
+
+loop do 
     puts ""
-
-    valid_input = false
-    while !valid_input
-        print "Choice: "
-        selection = gets.chomp
-        if selection == "1"
-            valid_input = true
-        elsif selection == "2"
-            how_to_text = open("how_to_play.txt")
-            puts how_to_text.read.center(80)
-            puts ""
-            puts "Welcome to Mastermind. Select an option below."
-            puts "[1] Start Game"
-            puts "[2] How to Play"
-            puts "[3] Exit"
-            puts ""
-        elsif selection == "3"
-            puts "Thanks for playing. See you next time."
-            return
-        else
-            puts "Invalid input. Please enter 1, 2, or 3."
-        end
+    puts "Welcome to Mastermind. Select an option below."
+    puts "[1] Start Game"
+    puts "[2] How to Play"
+    puts "[3] Exit"
+    puts ""
+    print "Choice: "
+    selection = gets.chomp
+    if selection == "1"
+        codemaker
+    elsif selection == "2"
+        how_to_text = open("how_to_play.txt")
+        puts how_to_text.read.center(80)
+    elsif selection == "3"
+        puts "Thanks for playing. See you next time."
+        return
+    else
+        puts "Invalid input. Please enter 1, 2, or 3."
     end
-
-    codemaker
 end
