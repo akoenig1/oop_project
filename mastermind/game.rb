@@ -1,100 +1,6 @@
 require_relative 'row'
 require_relative 'colorize_text'
-
-# Method for computer generated code
-
-COLORS = ["R", "G", "B", "Y", "O", "P", "M", "W" ]
-
-def generate_code
-    row = []
-    for i in 0..3 do
-        color_index = rand(8)
-        color = COLORS[color_index]
-        row[i] = Peg.new(color)
-    end
-    row
-end
-
-# Method to get and validate player guess
-
-def get_player_guess
-    puts "Enter your guess: " + "R".red.black_text + "G".green.black_text +
-    "B".blue.black_text + "Y".yellow.black_text + "O".orange.black_text + 
-    "P".purple.black_text + "M".magenta.black_text + "W".white.black_text
-    valid_input = false
-    until valid_input
-        player_guess = gets.chomp.split("")
-        valid_input = player_guess.all? { |color| COLORS.include?(color) } && (player_guess.length == 4)
-        if !valid_input
-            puts "Invalid input. Please enter your guess in the format 'RGBY'."
-        end
-    end
-    row = []
-    player_guess.each_with_index { |color, i|  row[i] = Peg.new(color) }
-    row
-end
-
-# Computer feedback
-
-def give_player_feedback guess, code
-    guess_array = guess.return_row.split("")
-    code_array = code.return_row.split("")
-    feedback_array = []
-    for i in 0..3 do
-        if guess_array[i] == code_array[i]
-            feedback_array << "!"
-            code_array[i] = ""
-        elsif code_array[0..3].include?(guess_array[i])
-            feedback_array << "*"
-            code_array[code_array.index(guess_array[i])] = ""
-        end
-    end
-    feedback_array.each { |fb| print fb.grey.black_text + " "}
-    puts ""
-    if feedback_array == ["!","!","!","!"]
-        puts "CONGRATULATIONS! You cracked the code!"
-        true
-    else
-        false
-    end
-end
-
-#Codemaker Game Mode Logic
-def codemaker
-    #Print Game Header
-    puts "-"*80
-    puts "CODEMAKER".center(80)
-    puts "-"*80
-    puts ""
-
-    #Generate Code
-    code = Row.new(generate_code)
-    
-    #Guessing Loop (12 Rounds)
-    i = 0
-    code_cracked = false
-    while i < 12
-        puts "GUESS ##{i+1} OF 12"
-        guess = Row.new(get_player_guess)
-        puts "Your Guess: "
-        print_with_color(guess)
-        puts "Feedback: "
-        code_cracked = give_player_feedback(guess, code)
-        #End game if code is cracked
-        if code_cracked
-            break
-        end
-        i += 1
-    end
-    #End game if code is not cracked after 12 guesses
-    if i == 11
-        puts "GAME OVER"
-        puts "You ran out of guesses and failed to crack the code."
-        print "The code was: "
-        print_with_color(code)
-        puts "Better luck next time."
-    end
-end
+require_relative 'codemaker'
 
 #Menu logic
 puts ("-"*80)
@@ -110,14 +16,18 @@ loop do
     puts ""
     print "Choice: "
     selection = gets.chomp
+    #Codemaker Game Mode
     if selection == "1"
         codemaker
+    #Print How to Play
     elsif selection == "2"
         how_to_text = open("how_to_play.txt")
         puts how_to_text.read.center(80)
+    #Quit Game
     elsif selection == "3"
         puts "Thanks for playing. See you next time."
         return
+    #Invalid Input Handler
     else
         puts "Invalid input. Please enter 1, 2, or 3."
     end
