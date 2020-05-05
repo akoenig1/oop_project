@@ -59,7 +59,44 @@ def give_player_feedback guess, code
     end
 end
 
-# Gameplay logic
+#Codemaker Game Mode Logic
+def codemaker
+    #Print Game Header
+    puts "-"*80
+    puts "CODEMAKER".center(80)
+    puts "-"*80
+    puts ""
+
+    #Generate Code
+    code = Row.new(generate_code)
+    
+    #Guessing Loop (12 Rounds)
+    i = 0
+    code_cracked = false
+    while i < 12
+        puts "GUESS ##{i+1} OF 12"
+        guess = Row.new(get_player_guess)
+        puts "Your Guess: "
+        print_with_color(guess)
+        puts "Feedback: "
+        code_cracked = give_player_feedback(guess, code)
+        #End game if code is cracked
+        if code_cracked
+            break
+        end
+        i += 1
+    end
+    #End game if code is not cracked after 12 guesses
+    if i == 11
+        puts "GAME OVER"
+        puts "You ran out of guesses and failed to crack the code."
+        print "The code was: "
+        print_with_color(code)
+        puts "Better luck next time."
+    end
+end
+
+#Menu logic
 selection = 0
 while selection != 3
     puts ("-"*80)
@@ -94,28 +131,5 @@ while selection != 3
         end
     end
 
-    puts "-"*80
-    puts "CODEMAKER".center(80)
-    puts "-"*80
-    puts ""
-    code = Row.new(generate_code)
-    i = 0
-    while i < 12
-        puts "GUESS ##{i+1} OF 12"
-        guess = Row.new(get_player_guess)
-        puts "Your Guess: "
-        print_with_color(guess)
-        puts "Feedback: "
-        if give_player_feedback guess, code
-            break
-        end
-        i += 1
-    end
-    if i == 11
-        puts "GAME OVER"
-        puts "You ran out of guesses and failed to crack the code."
-        print "The code was: "
-        print_with_color(code)
-        puts "Better luck next time."
-    end
+    codemaker
 end
