@@ -32,7 +32,7 @@ def get_player_guess
     row
 end
 
-#Give computer feedback to user's most recent guess
+#Give feedback to player's most recent guess
 def give_player_feedback guess, code
     #Retrieve peg colors from row objects and store in arrays
     guess_array = guess.return_row.split("")
@@ -90,6 +90,7 @@ def codebreaker
         print_with_color(guess)
         puts "Feedback: "
         code_cracked = give_player_feedback(guess, code)
+        puts ""
         #End game if code is cracked
         if code_cracked
             break
@@ -97,7 +98,7 @@ def codebreaker
         i += 1
     end
     #End game if code is not cracked after 12 guesses
-    if i == 11
+    if i == 12
         puts "GAME OVER"
         puts "You ran out of guesses and failed to crack the code."
         print "The code was: "
