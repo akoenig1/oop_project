@@ -26,7 +26,7 @@ def get_player_code
 end
 
 #Randomly generate computer's guess for this round
-def generate_guess
+def generate_guess guess_number
     row = []
     j = 0
     for i in 0..3 do
@@ -38,8 +38,9 @@ def generate_guess
                 $correct_colors[j] = ""
                 j += 1
             else
-                color_index = rand(8)
-                color = COLORS[color_index]
+                #color_index = rand(8)
+                guess_number = 7 if guess_number > 7
+                color = COLORS[guess_number]
             end
         end
         row[i] = Peg.new(color)
@@ -105,7 +106,7 @@ def codemaker
     while i < 12
         sleep 0.5
         puts "GUESS ##{i+1} OF 12"
-        guess = Row.new(generate_guess)
+        guess = Row.new(generate_guess(i))
         puts "Your Code: "
         print_with_color(code)
         puts "Computer Guess: "
